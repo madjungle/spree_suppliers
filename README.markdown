@@ -2,7 +2,7 @@ SUMMARY
 =======
 
 This extension allows the ability to add suppliers to products.
- 
+
 INSTALLATION
 ------------
 

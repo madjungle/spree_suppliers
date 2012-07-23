@@ -1,8 +1,8 @@
 <%= render :partial => 'admin/shared/configuration_menu' %>
- 
+
 <h1><%= t("editing_supplier") %></h1>
 <%= error_messages_for :supplier %>
- 
+
 <% form_for(:supplier, :url => object_url, :html => { :method => :put }) do |f| -%>
   <%= render :partial => "form", :locals => { :f => f } %>
   <p>

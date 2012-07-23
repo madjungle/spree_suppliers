@@ -17,11 +17,11 @@
   </tr>
   <tr>
     <td valign="top"><%=t("state")%>:</td>
-    <td><%= f.collection_select( 
-                          :state_id, 
-                          @states, 
-                          :id, 
-                          :name, 
+    <td><%= f.collection_select(
+                          :state_id,
+                          @states,
+                          :id,
+                          :name,
                           {:include_blank => true}) %></td>
   </tr>
   <tr>

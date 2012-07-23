@@ -12,7 +12,7 @@ class SupplierSetup < ActiveRecord::Migration
       t.string :email
       t.string :website
       t.text :notes
-      
+
       t.timestamps
     end
     add_column :products, :supplier_id, :integer

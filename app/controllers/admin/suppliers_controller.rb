@@ -6,11 +6,11 @@ class Admin::SuppliersController < Admin::BaseController
   def line_items
     @order = Order.find_by_number(params[:order_id])
   end
-  
+
   def selected
     @supplier = @product.supplier
   end
-  
+
   def available
     if params[:q].blank?
       @available_suppliers = []
@@ -22,16 +22,15 @@ class Admin::SuppliersController < Admin::BaseController
       format.html
       format.js {render :layout => false}
     end
- 
   end
-  
+
   def remove
     @product.supplier = nil
     @product.save
     @supplier = @product.supplier
     render :layout => false
   end
-  
+
   def select
     @supplier = Supplier.find_by_param!(params[:id])
     @product.supplier = @supplier
@@ -40,23 +39,22 @@ class Admin::SuppliersController < Admin::BaseController
     render :layout => false
   end
 
-
   update.response do |wants|
     wants.html { redirect_to collection_url }
   end
- 
+
   update.after do
     Rails.cache.delete('suppliers')
   end
- 
+
   create.response do |wants|
     wants.html { redirect_to collection_url }
   end
- 
+
   create.after do
     Rails.cache.delete('suppliers')
   end
-  
+
   private
 
   def load_data
@@ -64,5 +62,4 @@ class Admin::SuppliersController < Admin::BaseController
     @states = default_country.states.sort
     @product = Product.find_by_permalink(params[:product_id])
   end
- 
 end

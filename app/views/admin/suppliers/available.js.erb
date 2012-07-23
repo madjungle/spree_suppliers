@@ -18,13 +18,13 @@
       <tr id="<%= dom_id(supplier) %>">
         <td><%= supplier.name %></td>
 		    <td class="actions">
-          <%= image_tag "spinner.gif", :style => "display:none", :id => "#{dom_id(supplier, :spinner)}" %>		    
-		      <%= link_to_remote icon('add') + ' ' + t('select'), 
+          <%= image_tag "spinner.gif", :style => "display:none", :id => "#{dom_id(supplier, :spinner)}" %>
+		      <%= link_to_remote icon('add') + ' ' + t('select'),
 		                         {:url => select_admin_product_supplier_path(@product, supplier),
 		                         :loading => "jQuery('##{dom_id(supplier, :spinner)}').show()",
 		                         :update => 'selected-supplier',
 		                         :complete => "jQuery('##{dom_id(supplier)}').remove(); jQuery('##{dom_id(supplier, :spinner)}').hide();"}, :class => 'iconlink' %>
-		    </td>        
+		    </td>
       </tr>
     <% end %>
     <% if @available_suppliers.empty? %>
