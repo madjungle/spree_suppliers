@@ -15,11 +15,23 @@ class SupplierSetup < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_column :products, :supplier_id, :integer
+    if ActiveRecord::Base.connection.tables.include?('products')
+      add_column :products, :supplier_id, :integer
+    elsif ActiveRecord::Base.connection.tables.include?('spree_products')
+      add_column :spree_products, :supplier_id, :integer
+    else
+      raise 'Products table not found'
+    end
   end
 
   def self.down
     drop_table :suppliers
-    remove_column :products, :supplier_id
+    if ActiveRecord::Base.connection.tables.include?('products')
+      remove_column :products, :supplier_id
+    elsif ActiveRecord::Base.connection.tables.include?('spree_products')
+      remove_column :spree_products, :supplier_id
+    else
+      raise 'Products table not found'
+    end
   end
 end
