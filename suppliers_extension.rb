@@ -33,10 +33,6 @@ class SuppliersExtension < Spree::Extension
       end
     end
 
-    Product.class_eval do
-      belongs_to :supplier
-    end
-
     State.class_eval do
       has_many :suppliers
     end
