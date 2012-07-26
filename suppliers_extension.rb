@@ -32,9 +32,5 @@ class SuppliersExtension < Spree::Extension
         @extension_links << {:link => admin_suppliers_url, :link_text => t('suppliers'), :description => t('suppliers_description')}
       end
     end
-
-    State.class_eval do
-      has_many :suppliers
-    end
   end
 end
