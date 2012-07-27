@@ -1,4 +1,4 @@
-class Admin::SuppliersController < Admin::BaseController
+class Spree::Admin::SuppliersController < Spree::Admin::BaseController
   resource_controller
   belongs_to :product
   before_filter :load_data, :only => [:selected, :available, :remove, :new, :edit, :select]
