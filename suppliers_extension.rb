@@ -24,13 +24,5 @@ class SuppliersExtension < Spree::Extension
         @product_admin_tabs << {:name => t('suppliers'), :url => "selected_admin_product_suppliers_url"}
       end
     end
-
-    Admin::ConfigurationsController.class_eval do
-      before_filter :add_suppliers_link, :only => :index
-
-      def add_suppliers_link
-        @extension_links << {:link => admin_suppliers_url, :link_text => t('suppliers'), :description => t('suppliers_description')}
-      end
-    end
   end
 end
