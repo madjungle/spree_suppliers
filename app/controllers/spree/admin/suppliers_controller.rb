@@ -1,5 +1,4 @@
 class Spree::Admin::SuppliersController < Spree::Admin::BaseController
-  resource_controller
   belongs_to :product
   before_filter :load_data, :only => [:selected, :available, :remove, :new, :edit, :select]
 
@@ -20,7 +19,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
     @available_suppliers.delete_if { |supplier| @product.supplier == supplier }
     respond_to do |format|
       format.html
-      format.js {render :layout => false}
+      format.js { render :layout => false }
     end
   end
 
