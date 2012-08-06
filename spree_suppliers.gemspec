@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.platform  = Gem::Platform::RUBY
   s.name      = 'spree_suppliers'
   s.version   = '1.0.0'
-  s.summary   = 'Comments for orders and shipments'
+  s.summary   = 'Adds the ability to set a supplier for individual products'
   s.required_ruby_version = '>= 1.8.7'
 
   s.author    = 'John Williams, Igor Zubkov'
