@@ -2,18 +2,38 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
 #  belongs_to :product
 #  before_filter :load_data, :only => [:selected, :available, :remove, :new, :edit, :select]
 
-  before_filter :load_data, :only => [:edit]
+  before_filter :load_data, :only => [:new, :edit]
 
   def index
     @suppliers = Spree::Supplier.find(:all)
   end
 
+  def new
+    @supplier = Spree::Supplier.new
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def edit
-  	@supplier = Spree::Supplier.find(params[:id])
+    @supplier = Spree::Supplier.find(params[:id])
+  end
+
+  def create
+    @supplier = Spree::Supplier.new(params[:supplier])
+
+    respond_to do |format|
+      if @supplier.save
+        format.html { redirect_to admin_suppliers_path }
+      else
+        format.html { render :action => 'new' }
+      end
+    end
   end
 
   def update
-  	@supplier = Spree::Supplier.find(params[:id])
+    @supplier = Spree::Supplier.find(params[:id])
 
     respond_to do |format|
       if @supplier.update_attributes(params[:supplier])
