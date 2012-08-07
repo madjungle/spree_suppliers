@@ -1,5 +1,4 @@
 class Spree::Admin::SuppliersController < Spree::Admin::BaseController
-#  belongs_to :product
 #  before_filter :load_data, :only => [:selected, :available, :remove, :new, :edit, :select]
 
   before_filter :load_data, :only => [:new, :edit]
@@ -42,6 +41,15 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
         format.html { render :action => 'edit' }
       end
     end
+  end
+
+  def destroy
+  	@supplier = Spree::Supplier.find(params[:id])
+  	@supplier.destroy
+
+  	respond_to do |format|
+  	  format.html { redirect_to admin_suppliers_path }
+  	end
   end
 
 #  def line_items
