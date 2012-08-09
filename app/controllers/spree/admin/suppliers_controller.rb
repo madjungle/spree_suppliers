@@ -46,7 +46,9 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
 
   def destroy
     @supplier = Spree::Supplier.find(params[:id])
-    @supplier.destroy
+    if @supplier.destroy
+      flash.notice = flash_message_for(@supplier, :successfully_removed)
+    end
 
     respond_to do |format|
       format.html { redirect_to admin_suppliers_path }
