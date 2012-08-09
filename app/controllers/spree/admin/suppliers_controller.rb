@@ -24,6 +24,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
 
     respond_to do |format|
       if @supplier.save
+        flash.notice = flash_message_for(@supplier, :successfully_created)
         format.html { redirect_to admin_suppliers_path }
       else
         format.html { render :action => 'new' }
