@@ -20,7 +20,7 @@
         <td><%= supplier.phone %></td>
         <td>
           <%= link_to t(:edit), edit_admin_supplier_path(supplier) %> | 
-          <%= link_to t(:delete), admin_supplier_path(supplier), :method => :delete %>
+          <%= link_to t(:delete), admin_supplier_path(supplier), :method => :delete, :confirm => t(:are_you_sure) %>
         </td>
       </tr>
     <% end %>
