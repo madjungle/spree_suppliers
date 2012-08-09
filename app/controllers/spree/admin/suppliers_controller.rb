@@ -45,12 +45,12 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
   end
 
   def destroy
-  	@supplier = Spree::Supplier.find(params[:id])
-  	@supplier.destroy
+    @supplier = Spree::Supplier.find(params[:id])
+    @supplier.destroy
 
-  	respond_to do |format|
-  	  format.html { redirect_to admin_suppliers_path }
-  	end
+    respond_to do |format|
+      format.html { redirect_to admin_suppliers_path }
+    end
   end
 
 #  def line_items
