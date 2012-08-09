@@ -37,6 +37,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
 
     respond_to do |format|
       if @supplier.update_attributes(params[:supplier])
+        flash.notice = flash_message_for(@supplier, :successfully_updated)
         format.html { redirect_to admin_suppliers_path }
       else
         format.html { render :action => 'edit' }
