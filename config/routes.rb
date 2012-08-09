@@ -2,10 +2,23 @@ Spree::Core::Engine.routes.prepend do
   namespace :admin do
     resources :suppliers
     resources :products do
-      resources :suppliers, :member => { :select => :post, :remove => :post }, :collection => { :available => :post, :selected => :get }
+      resources :suppliers do
+      	member do
+          post :select
+          post :remove
+      	end
+      	collection do
+      	  post :available
+      	  get :selected
+      	end
+      end
     end
     resources :orders do
-      resources :suppliers, :collection => { :line_items => :get }
+      resources :suppliers do
+      	collection do
+      	  get :line_items
+      	end
+      end
     end
   end
 end
