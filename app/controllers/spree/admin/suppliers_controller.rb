@@ -89,14 +89,6 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
     render :layout => false
   end
 
-#  update.after do
-#    Rails.cache.delete('suppliers')
-#  end
-#
-#  create.after do
-#    Rails.cache.delete('suppliers')
-#  end
-
   private
 
   def load_data
