@@ -29,7 +29,7 @@
               $('#<%= "add_link_#{dom_id(supplier)}" %>').click(function(){
                 $('#<%= "#{dom_id(supplier, :spinner)}" %>').show();
                 $.ajax({
-                  data: {id: <%= supplier.id %> },
+                  data: { id: <%= supplier.id %> },
                   success: function(request){
                     $('#selected-supplier').html(request);
                   },

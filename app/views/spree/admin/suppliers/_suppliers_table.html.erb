@@ -7,21 +7,34 @@
   </thead>
   <tbody>
     <% unless supplier.blank? %>
-      <tr id='<%= dom_id(supplier, :sel)%>'>
+      <tr id='<%= dom_id(supplier, :sel) %>'>
         <td><%= supplier.name %></td>
         <td class='actions'>
           <%= image_tag 'spinner.gif', :style => 'display: none', :id => "#{dom_id(supplier, :rem_spinner)}" %>
-          <!--< link_to icon('delete') + ' ' + t(:remove),
-                      { :url => remove_admin_product_supplier_url(@product, supplier),
-                        :loading => "jQuery('##{dom_id(supplier, :rem_spinner)}').show()",
-                        :update => 'selected-supplier',
-                        :complete => "jQuery('##{dom_id(supplier, :sel)}').remove(); jQuery('##{dom_id(supplier, :rem_spinner)}').hide();"
-                      },
-                      :class => 'iconlink', :remote => true %>-->
           <%= link_to icon('delete') + ' ' + t(:remove),
                       remove_admin_product_supplier_url(@product, supplier),
                       :class => 'iconlink',
+                      :id => "remove_link_#{dom_id(supplier)}",
                       :remote => true %>
+          <%= javascript_tag do %>
+            $(document).ready(function() {
+              $('#<%= "remove_link_#{dom_id(supplier)}" %>').click(function(){
+                $('#<%= "#{dom_id(supplier, :rem_spinner)}" %>').show();
+
+                $.ajax({
+                  data: { id: <%= supplier.id %> },
+                  success: function(request){
+                    $('#<%= "#{dom_id(supplier, :sel)}" %>').remove();
+                  },
+                  type: 'get',
+                  url: '<%= remove_admin_product_supplier_url(@product, supplier) %>'
+                });
+                
+                $('#<%= "#{dom_id(supplier, :sel)}" %>').remove();
+                $('#<%= "#{dom_id(supplier, :rem_spinner)}" %>').hide();
+              });
+            });
+          <% end %>
         </td>
       </tr>
     <% else %>
