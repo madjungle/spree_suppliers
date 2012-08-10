@@ -2,8 +2,6 @@
 
 <h1><%= t(:editing_supplier) %></h1>
 
-<%#= error_messages_for :supplier %>
-
 <%= form_for(@supplier, :url => admin_supplier_path, :method => :put) do |f| %>
   <%= render 'form', :f => f %>
   <p>
