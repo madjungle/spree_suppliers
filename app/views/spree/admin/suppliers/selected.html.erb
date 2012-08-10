@@ -1,17 +1,17 @@
-<%= render :partial => 'admin/shared/product_sub_menu' %>
+<%= render 'spree/admin/shared/product_sub_menu' %>
 
-<%= render :partial => 'admin/shared/product_tabs', :locals => {:current => "Supplier"} %>
-<div id="selected-supplier">
-  <%= render :partial => "suppliers_table", :locals => {:supplier => @supplier} %>
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Suppliers' } %>
+<div id='selected-supplier'>
+  <%= render :partial => 'suppliers_table', :locals => { :supplier => @supplier } %>
 </div>
 
 
-<% form_tag('#') do %>
-  <label><%= t('search') %>:</label>
-  <input id="searchtext" size="25">
+<%= form_tag('#') do %>
+  <label><%= t(:search) %>:</label>
+  <input id='searchtext' size='25'>
 <% end %>
 
-<% javascript_tag do %>
+<%= javascript_tag do %>
   function search_for_supplier(){
     jQuery.ajax({
      data: {q: jQuery("#searchtext").val() },
@@ -33,9 +33,12 @@
     }
   });
 
-  jQuery("#searchtext").delayedObserver(0.75, function(element, value) {
-    search_for_supplier();
-  })
+<%
+#  jQuery("#searchtext").delayedObserver(0.75, function(element, value) {
+#    search_for_supplier();
+#  })
+%>
+
 <% end %>
 <br/>
 <div id="search_hits"></div>

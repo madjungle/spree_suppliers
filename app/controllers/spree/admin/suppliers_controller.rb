@@ -1,7 +1,5 @@
 class Spree::Admin::SuppliersController < Spree::Admin::BaseController
-#  before_filter :load_data, :only => [:selected, :available, :remove, :new, :edit, :select]
-
-  before_filter :load_data, :only => [:new, :edit]
+  before_filter :load_data, :only => [:selected, :available, :remove, :new, :edit, :select]
 
   def index
     @suppliers = Spree::Supplier.find(:all)
@@ -60,38 +58,37 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
     @order = Spree::Order.find_by_number(params[:order_id])
   end
 
-#  def selected
-#    @supplier = @product.supplier
-#  end
-#
-#  def available
-#    if params[:q].blank?
-#      @available_suppliers = []
-#    else
-#      @available_suppliers = Supplier.find(:all, :conditions => ['lower(name) LIKE ?', "%#{params[:q].downcase}%"])
-#    end
-#    @available_suppliers.delete_if { |supplier| @product.supplier == supplier }
-#    respond_to do |format|
-#      format.html
-#      format.js { render :layout => false }
-#    end
-#  end
-#
-#  def remove
-#    @product.supplier = nil
-#    @product.save
-#    @supplier = @product.supplier
-#    render :layout => false
-#  end
-#
-#  def select
-#    @supplier = Supplier.find_by_param!(params[:id])
-#    @product.supplier = @supplier
-#    @product.save
-#    @supplier = @product.supplier
-#    render :layout => false
-#  end
-#
+  def selected
+    @supplier = @product.supplier
+  end
+
+  def available
+    if params[:q].blank?
+      @available_suppliers = []
+    else
+      @available_suppliers = Spree::Supplier.find(:all, :conditions => ['lower(name) LIKE ?', "%#{params[:q].downcase}%"])
+    end
+    @available_suppliers.delete_if { |supplier| @product.supplier == supplier }
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
+ end
+
+  def remove
+    @product.supplier = nil
+    @product.save
+    @supplier = @product.supplier
+    render :layout => false
+  end
+
+  def select
+    @supplier = Spree::Supplier.find(params[:id])
+    @product.supplier = @supplier
+    @product.save
+    @supplier = @product.supplier
+    render :layout => false
+  end
+
 #  update.after do
 #    Rails.cache.delete('suppliers')
 #  end
