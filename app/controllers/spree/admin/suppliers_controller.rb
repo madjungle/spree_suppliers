@@ -56,10 +56,10 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
     end
   end
 
-#  def line_items
-#    @order = Order.find_by_number(params[:order_id])
-#  end
-#
+  def line_items
+    @order = Spree::Order.find_by_number(params[:order_id])
+  end
+
 #  def selected
 #    @supplier = @product.supplier
 #  end
