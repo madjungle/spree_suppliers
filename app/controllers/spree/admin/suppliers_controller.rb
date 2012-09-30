@@ -59,7 +59,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
   end
 
   def selected
-    @supplier = @product.supplier
+    @suppliers = @product.suppliers
   end
 
   def available
@@ -68,24 +68,25 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
     else
       @available_suppliers = Spree::Supplier.find(:all, :conditions => ['lower(name) LIKE ?', "%#{params[:q].downcase}%"])
     end
-    @available_suppliers.delete_if { |supplier| @product.supplier == supplier }
+    @available_suppliers.delete_if { |supplier| @product.suppliers.include?(supplier) }
     respond_to do |format|
       format.html { render :layout => false }
     end
  end
 
   def remove
-    @product.supplier = nil
+    @supplier = Spree::Supplier.find(params[:id])
+    @product.suppliers -= [@supplier]
     @product.save
-    @supplier = @product.supplier
+    @suppliers = @product.suppliers
     render :layout => false
   end
 
   def select
     @supplier = Spree::Supplier.find(params[:id])
-    @product.supplier = @supplier
+    @product.suppliers << @supplier unless @product.suppliers.include?(@supplier)
     @product.save
-    @supplier = @product.supplier
+    @suppliers = @product.suppliers
     render :layout => false
   end
 

@@ -6,7 +6,8 @@
     </tr>
   </thead>
   <tbody>
-    <% unless supplier.blank? %>
+    <% unless suppliers.empty? %>
+     <% suppliers.each do |supplier| %>
       <tr id='<%= dom_id(supplier, :sel) %>'>
         <td><%= supplier.name %></td>
         <td class='actions'>
@@ -37,6 +38,7 @@
           <% end %>
         </td>
       </tr>
+     <% end %>
     <% else %>
       <tr><td colspan="3"><%= t(:none) %>.</td></tr>
     <% end %>

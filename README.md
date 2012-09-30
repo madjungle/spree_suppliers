@@ -3,7 +3,7 @@ Spree Suppliers
 
 Spree Suppliers is an extension for Spree to allow add suppliers to products.
 
-This is based on a fork of johnwilliams/spree-suppliers.
+This is based on a fork of johnwilliams/spree-suppliers. It has been modified to work with Spree 1.1, and to make the Supplier-Product relationship many-to-many rather than one-to-many.
 
 Installation
 ------------
