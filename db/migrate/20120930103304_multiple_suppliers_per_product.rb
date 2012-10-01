@@ -5,7 +5,7 @@ class MultipleSuppliersPerProduct < ActiveRecord::Migration
       t.integer :product_id
       t.integer :supplier_id
     end
-    add_index :spree_products_suppliers, :product_id
-    add_index :spree_products_suppliers, :supplier_id
+    add_index :products_suppliers, :product_id
+    add_index :products_suppliers, :supplier_id
   end
 end
