@@ -2,16 +2,27 @@
   <thead>
     <tr>
       <th><%= t(:supplier_name) %></th>
+      <th>SKU</th>
+      <th>Cost Price</th>
+      <th>Shipping Cost</th>
       <th>&nbsp;</th>
     </tr>
   </thead>
   <tbody>
-    <% unless suppliers.empty? %>
-     <% suppliers.each do |supplier| %>
+    <% unless supplier_links.empty? %>
+     <% supplier_links.each do |supplier_link| %>
+      <% supplier = supplier_link.supplier %>
       <tr id='<%= dom_id(supplier, :sel) %>'>
         <td><%= supplier.name %></td>
+        <td><input id="sku_<%= dom_id(supplier) %>" value="<%= (supplier_link.sku || "").gsub('"','') %>" /></td>
+        <td><input id="cost_<%= dom_id(supplier) %>" value="<%= number_to_currency(supplier_link.cost_price) %>" /></td>
+        <td><input id="shipping_<%= dom_id(supplier) %>" value="<%= number_to_currency(supplier_link.shipping_cost) %>" /></td>
         <td class='actions'>
           <%= image_tag 'spinner.gif', :style => 'display: none', :id => "#{dom_id(supplier, :rem_spinner)}" %>
+          <%= link_to icon('switch') + ' ' + t(:update),
+                      'javascript:void(0)',
+                      :class => 'iconlink',
+                      :id => "update_link_#{dom_id(supplier)}" %>
           <%= link_to icon('delete') + ' ' + t(:remove),
                       remove_admin_product_supplier_url(@product, supplier),
                       :class => 'iconlink',
@@ -34,13 +45,30 @@
                 $('#<%= "#{dom_id(supplier, :sel)}" %>').remove();
                 $('#<%= "#{dom_id(supplier, :rem_spinner)}" %>').hide();
               });
+              $('#<%= "update_link_#{dom_id(supplier)}" %>').click(function(){
+                $('#<%= "#{dom_id(supplier, :rem_spinner)}" %>').show();
+
+                $.ajax({
+                  data: { id: <%= supplier.id %>,
+                          sku: $('#sku_<%= dom_id(supplier) %>')[0].value,
+                          cost_price: $('#cost_<%= dom_id(supplier) %>')[0].value,
+                          shipping_cost: $('#shipping_<%= dom_id(supplier) %>')[0].value },
+                  success: function(request) { 
+                    $('#selected-supplier').html(request);
+                  },
+                  type: 'get',
+                  url: '<%= update_data_admin_product_supplier_url(@product, supplier) %>'
+                });
+                
+                $('#<%= "#{dom_id(supplier, :rem_spinner)}" %>').hide();
+              });
             });
           <% end %>
         </td>
       </tr>
      <% end %>
     <% else %>
-      <tr><td colspan="3"><%= t(:none) %>.</td></tr>
+      <tr><td colspan="5"><%= t(:none) %>.</td></tr>
     <% end %>
   </tbody>
 </table>

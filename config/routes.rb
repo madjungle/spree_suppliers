@@ -6,6 +6,7 @@ Spree::Core::Engine.routes.prepend do
         member do
           get :select
           get :remove
+          get :update_data # set SKU, cost price, and shipping cost
         end
         collection do
           post :available

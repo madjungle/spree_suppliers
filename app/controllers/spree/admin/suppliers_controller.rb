@@ -1,5 +1,5 @@
 class Spree::Admin::SuppliersController < Spree::Admin::BaseController
-  before_filter :load_data, :only => [:selected, :available, :remove, :new, :edit, :select]
+  before_filter :load_data, :only => [:selected, :available, :remove, :new, :edit, :select, :update_data]
 
   def index
     @suppliers = Spree::Supplier.find(:all)
@@ -58,8 +58,9 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
     @order = Spree::Order.find_by_number(params[:order_id])
   end
 
+  # Show the Suppliers for a certain Product
   def selected
-    @suppliers = @product.suppliers
+    @supplier_links = @product.supplier_links
   end
 
   def available
@@ -78,7 +79,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
     @supplier = Spree::Supplier.find(params[:id])
     @product.suppliers -= [@supplier]
     @product.save
-    @suppliers = @product.suppliers
+    @supplier_links = @product.supplier_links
     render :layout => false
   end
 
@@ -86,7 +87,18 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
     @supplier = Spree::Supplier.find(params[:id])
     @product.suppliers << @supplier unless @product.suppliers.include?(@supplier)
     @product.save
-    @suppliers = @product.suppliers
+    @supplier_links = @product.supplier_links
+    render :layout => false
+  end
+
+  def update_data
+    @supplier = Spree::Supplier.find(params[:id])
+    @supplier_links = @product.supplier_links
+    @link = @supplier_links.detect { |s| s.supplier == @supplier }
+    @link.sku           = params[:sku]
+    @link.cost_price    = strip_nonnumeric_chars(params[:cost_price]).to_d
+    @link.shipping_cost = strip_nonnumeric_chars(params[:shipping_cost]).to_d
+    @link.save
     render :layout => false
   end
 
@@ -96,5 +108,9 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
    default_country = Spree::Country.find Spree::Config[:default_country_id]
    @states = default_country.states.sort
    @product = Spree::Product.find_by_permalink(params[:product_id])
+  end
+
+  def strip_nonnumeric_chars(str)
+    str.gsub(/[^\d.]+/,'')
   end
 end
