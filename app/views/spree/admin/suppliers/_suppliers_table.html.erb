@@ -41,7 +41,7 @@
                   type: 'get',
                   url: '<%= remove_admin_product_supplier_url(@product, supplier) %>'
                 });
-                
+
                 $('#<%= "#{dom_id(supplier, :sel)}" %>').remove();
                 $('#<%= "#{dom_id(supplier, :rem_spinner)}" %>').hide();
               });
@@ -59,7 +59,7 @@
                   type: 'get',
                   url: '<%= update_data_admin_product_supplier_url(@product, supplier) %>'
                 });
-                
+
                 $('#<%= "#{dom_id(supplier, :rem_spinner)}" %>').hide();
               });
             });
