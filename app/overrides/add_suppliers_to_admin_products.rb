@@ -5,5 +5,4 @@ Deface::Override.new(:virtual_path => "spree/admin/shared/_product_tabs",
                                  <%= link_to_with_icon 'icon-group', t(:suppliers),
                                      selected_admin_product_suppliers_path(@product) %>
                               </li>",
-                     :original => '3801430748a019ba9c003cdf356289c7f9d98724',
-                     :disabled => false)
+                     :original => '3801430748a019ba9c003cdf356289c7f9d98724')
