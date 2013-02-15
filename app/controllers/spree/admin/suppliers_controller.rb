@@ -1,4 +1,4 @@
-class Spree::Admin::SuppliersController < Spree::Admin::BaseController
+class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
   before_filter :load_data, :only => [:selected, :available, :remove, :new, :edit, :select, :update_data]
 
   def index

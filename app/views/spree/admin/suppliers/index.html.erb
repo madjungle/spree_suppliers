@@ -3,24 +3,25 @@
 <h1>
   <%= t(:suppliers) %>
 </h1>
+
 <table class="admin-report" width="545">
   <thead>
     <tr>
       <th><%= t(:supplier_name) %></th>
       <th><%= t(:email) %></th>
       <th><%= t(:phone) %></th>
-      <th><%= t(:action) %></th>
+      <th class="actions">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
     <% @suppliers.each do |supplier| %>
-      <tr class="<%= cycle('even', 'odd') %>">
+      <tr class="<%= cycle('odd', 'even') %>">
         <td><%= supplier.name %></td>
         <td><%= supplier.email %></td>
         <td><%= supplier.phone %></td>
-        <td>
-          <%= link_to t(:edit), edit_admin_supplier_path(supplier) %> | 
-          <%= link_to t(:delete), admin_supplier_path(supplier), :method => :delete, :data => { :confirm => t(:are_you_sure) } %>
+        <td class="actions">
+          <%= link_to_edit supplier, :no_text => true %>
+          <%= link_to_delete supplier, :no_text => true %>
         </td>
       </tr>
     <% end %>
