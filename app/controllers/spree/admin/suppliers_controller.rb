@@ -51,6 +51,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
 
     respond_to do |format|
       format.html { redirect_to admin_suppliers_path }
+      format.js   { render :partial => "spree/admin/shared/destroy" }
     end
   end
 
