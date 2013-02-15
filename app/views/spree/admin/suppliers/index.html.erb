@@ -1,4 +1,4 @@
-<%= render 'spree/admin/shared/configuration_menu' %>
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
   <%= t(:suppliers) %>
@@ -10,26 +10,34 @@
   </li>
 <% end %>
 
-<table class="admin-report" width="545">
-  <thead>
-    <tr>
-      <th><%= t(:supplier_name) %></th>
-      <th><%= t(:email) %></th>
-      <th><%= t(:phone) %></th>
-      <th class="actions">&nbsp;</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @suppliers.each do |supplier| %>
-      <tr class="<%= cycle('odd', 'even') %>">
-        <td><%= supplier.name %></td>
-        <td><%= supplier.email %></td>
-        <td><%= supplier.phone %></td>
-        <td class="actions">
-          <%= link_to_edit supplier, :no_text => true %>
-          <%= link_to_delete supplier, :no_text => true %>
-        </td>
+<% if @suppliers.empty? %>
+  <div class="no-objects-found">
+    <%= t(:none) %>
+  </div>
+<% else %>
+
+  <table class="admin-report" width="545">
+    <thead>
+      <tr>
+        <th><%= t(:supplier_name) %></th>
+        <th><%= t(:email) %></th>
+        <th><%= t(:phone) %></th>
+        <th class="actions">&nbsp;</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @suppliers.each do |supplier| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= supplier.name %></td>
+          <td><%= supplier.email %></td>
+          <td><%= supplier.phone %></td>
+          <td class="actions">
+            <%= link_to_edit supplier, :no_text => true %>
+            <%= link_to_delete supplier, :no_text => true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
