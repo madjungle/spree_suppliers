@@ -32,7 +32,7 @@
     </thead>
     <tbody>
       <% @suppliers.each do |supplier| %>
-        <tr class="<%= cycle('odd', 'even') %>">
+        <tr id="<%= spree_dom_id supplier %>" class="<%= cycle('odd', 'even') %>">
           <td><%= supplier.name %></td>
           <td><%= supplier.email %></td>
           <td><%= supplier.phone %></td>
