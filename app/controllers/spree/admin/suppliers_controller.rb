@@ -7,10 +7,6 @@ class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
 
   def new
     @supplier = Spree::Supplier.new
-
-    respond_to do |format|
-      format.html
-    end
   end
 
   def edit
