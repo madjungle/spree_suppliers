@@ -5,12 +5,18 @@
     else row.style.display = '';
   }
 </script>
+
 <h4><%= t(:available_suppliers) %></h4>
+
 <table class='index'>
+  <colgroup>
+    <col style="width: 85%" />
+    <col style="width: 15%" />
+  </colgroup>
   <thead>
     <tr>
       <th><%= t(:name) %></th>
-      <th><%= t(:action) %></th>
+      <th class="actions">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
@@ -19,11 +25,12 @@
         <td><%= supplier.name %></td>
         <td class='actions'>
           <%= image_tag 'spinner.gif', :style => 'display: none', :id => "#{dom_id(supplier, :spinner)}" %>
-          <%= link_to icon('add') + ' ' + t(:select),
-                      select_admin_product_supplier_path(@product, supplier),
-                      :class => 'iconlink',
-                      :id => "add_link_#{dom_id(supplier)}",
-                      :remote => true %>
+          <%= link_to_with_icon 'icon-plus',
+                                t(:select),
+                                select_admin_product_supplier_path(@product, supplier),
+                                :id => "add_link_#{dom_id(supplier)}",
+                                :remote => true,
+                                :no_text => true %>
           <%= javascript_tag do %>
             $(document).ready(function() {
               $('#<%= "add_link_#{dom_id(supplier)}" %>').click(function(){
@@ -45,7 +52,7 @@
       </tr>
     <% end %>
     <% if @available_suppliers.empty? %>
-      <tr><td colspan="3"><%= t(:no_match_found) %>.</td></tr>
+      <tr><td colspan="1"><%= t(:no_match_found) %>.</td></tr>
     <% end %>
   </tbody>
 </table>
