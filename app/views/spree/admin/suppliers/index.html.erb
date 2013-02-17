@@ -15,7 +15,7 @@
     <%= t(:none) %>
   </div>
 <% else %>
-  <table class="index" id="suppliers">
+  <table class="index" id="suppliers" data-hook>
     <colgroup>
       <col style="width: 35%" />
       <col style="width: 35%" />
@@ -23,7 +23,7 @@
       <col style="width: 15%" />
     </colgroup>
     <thead>
-      <tr>
+      <tr data-hook="suppliers_header">
         <th><%= t(:supplier_name) %></th>
         <th><%= t(:email) %></th>
         <th><%= t(:phone) %></th>
@@ -32,7 +32,7 @@
     </thead>
     <tbody>
       <% @suppliers.each do |supplier| %>
-        <tr id="<%= spree_dom_id supplier %>" class="<%= cycle('odd', 'even') %>">
+        <tr id="<%= spree_dom_id supplier %>" data-hook="supplier_row" class="<%= cycle('odd', 'even') %>">
           <td><%= supplier.name %></td>
           <td><%= supplier.email %></td>
           <td><%= supplier.phone %></td>
