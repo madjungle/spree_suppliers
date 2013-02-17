@@ -64,7 +64,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
     if params[:q].blank?
       @available_suppliers = []
     else
-      @available_suppliers = Spree::Supplier.find(:all, :conditions => ['lower(name) LIKE ?', "%#{params[:q].downcase}%"])
+      @available_suppliers = Spree::Supplier.find(:all, :conditions => ['LOWER(name) LIKE ?', "%#{params[:q].downcase}%"])
     end
     @available_suppliers.delete_if { |supplier| @product.suppliers.include?(supplier) }
     respond_to do |format|
