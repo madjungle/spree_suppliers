@@ -16,7 +16,7 @@
     <%= f.text_field :city, :class => 'fullwidth' %>
   </div>
   <div class="field">
-    <%= label_tag :supplier_state, t(:state) %>:<br>
+    <%= label_tag :supplier_state_id, t(:state) %>:<br>
     <%= f.collection_select(:state_id,
                             @states,
                             :id,
