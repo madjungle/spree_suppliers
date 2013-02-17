@@ -13,7 +13,7 @@
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @supplier } %>
 
 <%= form_for(@supplier, :url => admin_supplier_path, :method => :put) do |f| %>
-  <%= render 'form', :f => f %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
 
   <div class="clear"></div>
 
