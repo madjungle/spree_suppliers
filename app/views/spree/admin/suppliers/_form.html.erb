@@ -1,51 +1,50 @@
-<table class="admin-report" width="545">
-  <tr>
-    <td valign="top"><%= t(:supplier_name) %>:</td>
-    <td><%= f.text_field :name %></td>
-  </tr>
-  <tr>
-    <td valign="top"><%= t(:'activerecord.attributes.spree/address.address1') %>:</td>
-    <td><%= f.text_field :address1 %></td>
-  </tr>
-  <tr>
-    <td valign="top"><%= t(:'activerecord.attributes.spree/address.address2') %>:</td>
-    <td><%= f.text_field :address2 %></td>
-  </tr>
-  <tr>
-    <td valign="top"><%= t(:'activerecord.attributes.spree/address.city') %>:</td>
-    <td><%= f.text_field :city %></td>
-  </tr>
-  <tr>
-    <td valign="top"><%= t(:state) %>:</td>
-    <td><%= f.collection_select(
-                          :state_id,
-                          @states,
-                          :id,
-                          :name,
-                          { :include_blank => true }) %></td>
-  </tr>
-  <tr>
-    <td valign="top"><%= t(:'activerecord.attributes.spree/address.zipcode') %>:</td>
-    <td><%= f.text_field :zip_code %></td>
-  </tr>
-  <tr>
-    <td valign="top"><%= t(:phone) %>:</td>
-    <td><%= f.text_field :phone %></td>
-  </tr>
-  <tr>
-    <td valign="top"><%= t(:fax) %>:</td>
-    <td><%= f.text_field :fax %></td>
-  </tr>
-  <tr>
-    <td valign="top"><%= t(:email) %>:</td>
-    <td><%= f.text_field :email %></td>
-  </tr>
-  <tr>
-    <td valign="top"><%= t(:website) %>:</td>
-    <td><%= f.text_field :website %></td>
-  </tr>
-  <tr>
-    <td valign="top"><%= t(:notes) %>:</td>
-    <td><%= f.text_area :notes %></td>
-  </tr>
-</table>
+<div id="supplier" data-hook>
+  <div class="field">
+    <%= label_tag :supplier_name, t(:supplier_name) %>:<br>
+    <%= f.text_field :name, :class => 'fullwidth' %>
+  </div>
+  <div class="field">
+    <%= label_tag :supplier_address1, t(:'activerecord.attributes.spree/address.address1') %>:<br>
+    <%= f.text_field :address1, :class => 'fullwidth' %>
+  </div>
+  <div class="field">
+    <%= label_tag :supplier_address2, t(:'activerecord.attributes.spree/address.address2') %>:<br>
+    <%= f.text_field :address2, :class => 'fullwidth' %>
+  </div>
+  <div class="field">
+    <%= label_tag :supplier_city, t(:'activerecord.attributes.spree/address.city') %>:<br>
+    <%= f.text_field :city, :class => 'fullwidth' %>
+  </div>
+  <div class="field">
+    <%= label_tag :supplier_state, t(:state) %>:<br>
+    <%= f.collection_select(:state_id,
+                            @states,
+                            :id,
+                            :name,
+                            { :include_blank => true }) %>
+  </div>
+  <div class="field">
+    <%= label_tag :supplier_zip_code, t(:'activerecord.attributes.spree/address.zipcode') %>:<br>
+    <%= f.text_field :zip_code, :class => 'fullwidth' %>
+  </div>
+  <div class="field">
+    <%= label_tag :supplier_phone, t(:phone) %>:<br>
+    <%= f.text_field :phone, :class => 'fullwidth' %>
+  </div>
+  <div class="field">
+    <%= label_tag :supplier_fax, t(:fax) %>:<br>
+    <%= f.text_field :fax, :class => 'fullwidth' %>
+  </div>
+  <div class="field">
+    <%= label_tag :supplier_email, t(:email) %>:<br>
+    <%= f.text_field :email, :class => 'fullwidth' %>
+  </div>
+  <div class="field">
+    <%= label_tag :supplier_website, t(:website) %>:<br>
+    <%= f.text_field :website, :class => 'fullwidth' %>
+  </div>
+  <div class="field">
+    <%= label_tag :supplier_notes, t(:notes) %>:<br>
+    <%= f.text_area :notes, :class => 'fullwidth', :rows => 5 %>
+  </div>
+</div>
