@@ -14,8 +14,8 @@
 </div>
 
 <%= form_tag('#') do %>
-  <label><%= t(:search) %>:</label>
-  <input id='searchtext' size='25'>
+  <label for="searchtext"><%= t(:search) %>:</label><br>
+  <input id='searchtext' class="fullwidth" type="text" style="width: 85%" />
 <% end %>
 
 <%= javascript_tag do %>
