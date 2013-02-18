@@ -21,9 +21,9 @@
       <% supplier = supplier_link.supplier %>
       <tr id='<%= dom_id(supplier, :sel) %>'>
         <td><%= supplier.name %></td>
-        <td><input id="sku_<%= dom_id(supplier) %>" value="<%= (supplier_link.sku || "").gsub('"','') %>" size="12" /></td>
-        <td><input id="cost_<%= dom_id(supplier) %>" value="<%= number_to_currency(supplier_link.cost_price) %>" size="12" /></td>
-        <td><input id="shipping_<%= dom_id(supplier) %>" value="<%= number_to_currency(supplier_link.shipping_cost) %>" size="12" /></td>
+        <td><input id="sku_<%= dom_id(supplier) %>" type="text" value="<%= (supplier_link.sku || "").gsub('"','') %>" size="12" /></td>
+        <td><input id="cost_<%= dom_id(supplier) %>" type="text" value="<%= number_to_currency(supplier_link.cost_price) %>" size="12" /></td>
+        <td><input id="shipping_<%= dom_id(supplier) %>" type="text" value="<%= number_to_currency(supplier_link.shipping_cost) %>" size="12" /></td>
         <td class='actions'>
           <%= image_tag 'spinner.gif', :style => 'display: none', :id => "#{dom_id(supplier, :rem_spinner)}" %>
           <%= link_to_with_icon 'icon-save',
