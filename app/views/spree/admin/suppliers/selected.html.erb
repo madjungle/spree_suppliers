@@ -9,10 +9,9 @@
 
 <%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Suppliers' } %>
 
-<div id='selected-supplier'>
+<div id='selected-supplier' class="index">
   <%= render :partial => 'suppliers_table', :locals => { :supplier_links => @supplier_links } %>
 </div>
-
 
 <%= form_tag('#') do %>
   <label><%= t(:search) %>:</label>
@@ -41,6 +40,6 @@
     }
   });
 <% end %>
-<br/>
-<div id="search_hits"></div>
-
+<br>
+<div id="search_hits">
+</div>
