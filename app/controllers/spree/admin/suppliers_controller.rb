@@ -1,4 +1,4 @@
-class Spree::Admin::SuppliersController < Spree::Admin::BaseController
+class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
   before_filter :load_data, :only => [:selected, :available, :remove, :new, :edit, :select, :update_data]
 
   def index
@@ -7,10 +7,6 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
 
   def new
     @supplier = Spree::Supplier.new
-
-    respond_to do |format|
-      format.html
-    end
   end
 
   def edit
@@ -51,6 +47,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
 
     respond_to do |format|
       format.html { redirect_to admin_suppliers_path }
+      format.js   { render :partial => "spree/admin/shared/destroy" }
     end
   end
 
@@ -67,7 +64,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::BaseController
     if params[:q].blank?
       @available_suppliers = []
     else
-      @available_suppliers = Spree::Supplier.find(:all, :conditions => ['lower(name) LIKE ?', "%#{params[:q].downcase}%"])
+      @available_suppliers = Spree::Supplier.find(:all, :conditions => ['LOWER(name) LIKE ?', "%#{params[:q].downcase}%"])
     end
     @available_suppliers.delete_if { |supplier| @product.suppliers.include?(supplier) }
     respond_to do |format|

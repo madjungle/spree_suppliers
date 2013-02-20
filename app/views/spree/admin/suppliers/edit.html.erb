@@ -1,10 +1,21 @@
-<%= render 'spree/admin/shared/configuration_menu' %>
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
-<h1><%= t(:editing_supplier) %></h1>
+<% content_for :page_title do %>
+  <%= t(:editing_supplier) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to t(:back_to_suppliers_list), admin_suppliers_path, :icon => 'icon-arrow-left' %>
+  </li>
+<% end %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @supplier } %>
 
 <%= form_for(@supplier, :url => admin_supplier_path, :method => :put) do |f| %>
-  <%= render 'form', :f => f %>
-  <p>
-    <%= submit_tag t(:update) %> or <%= link_to t(:cancel), admin_suppliers_path %>
-  </p>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+
+  <div class="clear"></div>
+
+  <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
 <% end %>

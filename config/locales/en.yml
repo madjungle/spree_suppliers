@@ -2,9 +2,11 @@
 en:
   suppliers: "Suppliers"
   supplier_name: "Supplier Name"
+  supplier_names: "Supplier Names"
   new_supplier: "New Supplier"
   available_suppliers: "Available Suppliers"
   editing_supplier: "Editing Supplier"
   fax: "Fax"
   notes: "Notes"
   suppliers_description: "Manage Suppliers"
+  back_to_suppliers_list: "Back to suppliers list"

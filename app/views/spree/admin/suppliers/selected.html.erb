@@ -1,14 +1,21 @@
-<%= render 'spree/admin/shared/product_sub_menu' %>
+<% content_for :page_actions do %>
+  <li><%= button_link_to t(:back_to_products_list), session[:return_to] || admin_products_url, :icon => 'icon-arrow-left' %></li>
+  <li id="new_product_link">
+    <%= button_link_to t(:new_product), new_admin_product_url, { :remote => true, :icon => 'icon-plus', :id => 'admin_new_product' } %>
+  </li>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
 
 <%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Suppliers' } %>
-<div id='selected-supplier'>
+
+<div id='selected-supplier' class="index">
   <%= render :partial => 'suppliers_table', :locals => { :supplier_links => @supplier_links } %>
 </div>
 
-
 <%= form_tag('#') do %>
-  <label><%= t(:search) %>:</label>
-  <input id='searchtext' size='25'>
+  <label for="searchtext"><%= t(:search) %>:</label><br>
+  <input id='searchtext' class="fullwidth" type="text" style="width: 85%" />
 <% end %>
 
 <%= javascript_tag do %>
@@ -33,6 +40,6 @@
     }
   });
 <% end %>
-<br/>
-<div id="search_hits"></div>
-
+<br>
+<div id="search_hits">
+</div>
