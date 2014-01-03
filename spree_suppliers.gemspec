@@ -16,4 +16,5 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '>= 1.3.0'
+  s.add_dependency 'protected_attributes'
 end
