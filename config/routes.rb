@@ -1,4 +1,4 @@
-Spree::Core::Engine.add_routes do
+Spree::Core::Engine.routes.prepend do
   namespace :admin do
     resources :suppliers
     resources :products do
